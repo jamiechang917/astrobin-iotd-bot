@@ -1,6 +1,6 @@
 # astrobin-iotd-bot
-The unofficial Discord bot for AstroBin's IOTD (Image of the day).
-![UI](https://i.imgur.com/9EB6TSF.png)
+The unofficial Discord bot for AstroBin's IOTD (Image of the day). <br></br>
+<img src="https://i.imgur.com/9EB6TSF.png" width="400">
 
 ## Features
 - Fetch the latest IOTD from AstroBin
