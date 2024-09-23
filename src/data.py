@@ -8,7 +8,7 @@ def add_server(guild: discord.Guild, channel: discord.TextChannel):
     """
     server = {
         "server":     guild.name,
-        "members":    guild.member_count,
+        "members":    str(guild.member_count),
         "channel":    channel.name,
         "server_id":  guild.id,
         "channel_id": channel.id,

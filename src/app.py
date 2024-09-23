@@ -8,12 +8,12 @@ from data import *
 
 print("===========================")
 print("AstroBin IOTD Discord Bot")
-print("Version: 1.0.0")
+print("Version: 1.0")
 print("Author: Jamie Chang")
 print("License: MIT")
 print("===========================")
 
-# TOKEN     = "YOUR TOKEN HERE"
+TOKEN     = "YOUR TOKEN HERE"
 BROADCAST = time(0, 0) # fetch IOTD and broadcast at certain time (UTC)
 
 intents = discord.Intents.default()
@@ -72,7 +72,6 @@ async def today(interaction: discord.Interaction):
 
 @tree.command(name="setup", description="Setup the bot.")
 async def setup(interaction: discord.Interaction):
-    # message = "Welcome to AstroBin IOTD Bot! Please set the channel where you want to receive the IOTD by typing `/setchannel`. After that, the bot will send the IOTD to that channel every day. Also, you can type `/today` to get today's IOTD immediately."
     message = (
     "Welcome to the AstroBin IOTD Bot! Please set the channel where you would like to receive the IOTD by typing `/setchannel`. "
     "After that, the bot will send the IOTD to that channel every day. You can also type `/today` to get today's IOTD right away."
