@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+import re
 
 headers = {
     'User-agent':
@@ -12,9 +13,11 @@ def get_iotd_url() -> str:
     try:
         response = requests.get(url, headers=headers)
         soup = BeautifulSoup(response.content, "html.parser")
-        latest_image_link = soup.find('div', class_='iotd-archive-image').find('a', href=True)
-        latest_image_href = latest_image_link['href']
-        image_url = f"https://astrobin.com{latest_image_href}"
+        pattern_hash = r'"image":\{.*?"hash":"(.*?)".*?\}'
+        # pattern_username = r'"image":\{.*?"username":"(.*?)".*?\}'
+        matches_hash = re.findall(pattern_hash, str(soup))
+        # matches_username = re.findall(pattern_username, str(soup))
+        image_url = f"https://www.astrobin.com/{matches_hash[0]}/?force-classic-view"
         return image_url
     except Exception as e:
         print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} WARNING     Failed to get IOTD URL: {e}")
@@ -49,5 +52,5 @@ def truncate_text(text, word_limit=100):
         return ' '.join(words[:word_limit]) + '...'
     return text
 
-# if __name__ == "__main__":
-#     print(get_image_info(get_iotd_url()))
+if __name__ == "__main__":
+    print(get_image_info(get_iotd_url()))

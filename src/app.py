@@ -8,12 +8,12 @@ from data import *
 
 print("===========================")
 print("AstroBin IOTD Discord Bot")
-print("Version: 1.0")
+print("Version: 1.1")
 print("Author: Jamie Chang")
 print("License: MIT")
 print("===========================")
 
-TOKEN     = "YOUR TOKEN HERE"
+TOKEN     = ""
 BROADCAST = time(0, 0) # fetch IOTD and broadcast at certain time (UTC)
 
 intents = discord.Intents.default()
@@ -62,7 +62,7 @@ async def scheduled_job():
                         await channel.send(embed=embed)
                     else:
                         print(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} WARNING     Unable to retrieve the IOTD. Please try again later.")
-                    add_server(guild, channel) # update the server info
+                # add_server(guild, channel) # update the server information
 
 @tree.command(name="today", description="Get the image of the day from AstroBin.")
 async def today(interaction: discord.Interaction):

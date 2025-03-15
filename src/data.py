@@ -14,7 +14,7 @@ def add_server(guild: discord.Guild, channel: discord.TextChannel):
         "channel_id": channel.id,
     }
     try:
-        df = pd.read_csv("../data/servers.csv")
+        df = pd.read_csv("./data/servers.csv")
     except:
         df = pd.DataFrame(columns=["server", "members", "channel", "server_id", "channel_id"])
 
@@ -23,14 +23,21 @@ def add_server(guild: discord.Guild, channel: discord.TextChannel):
     else:
         df = pd.concat([df, pd.DataFrame([server])], ignore_index=True)
     
-    df.to_csv("../data/servers.csv", index=False)
+    df.to_csv("./data/servers.csv", index=False)
 
 def get_server(guild: discord.Guild):
     """
     Get the server information from the servers.csv file.
     """
-    df = pd.read_csv("../data/servers.csv")
+    # if the file does not exist, return None
+    # try:
+    #     df = pd.read_csv("./data/servers.csv")
+    # except:
+    #     df = pd.DataFrame(columns=["server", "members", "channel", "server_id", "channel_id"])
+    #     df.to_csv("./data/servers.csv", index=False)
+    df = pd.read_csv("./data/servers.csv")
     if guild.id not in df["server_id"].values:
         return None
     else:
         return df[df["server_id"] == guild.id].to_dict(orient="records")[0]
+    
